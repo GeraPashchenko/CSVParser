@@ -8,9 +8,9 @@ services:
     volumes:
       - db:/data/db
     environment:
-      - MONGO_INITDB_ROOT_USERNAME: admin
-        MONGO_INITDB_ROOT_PASSWORD: admin
-        MONGO_INITDB_ROOT_DATABASENAME: test
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: admin
+      MONGO_INITDB_ROOT_DATABASENAME: test
     networks:
       - backend
 volumes:
