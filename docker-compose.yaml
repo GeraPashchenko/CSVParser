@@ -1,0 +1,15 @@
+version: '3.7'
+services:
+  backend:
+    image: test-backend
+    build: .
+    networks:
+      - backend
+    depends_on:
+      - mongo
+    ports:
+      - 5006:5006
+    environment:
+      MONGODB_URL: mongodb://admin:admin@mongo/test?retryWrites=true&w=majority
+networks:
+  backend:

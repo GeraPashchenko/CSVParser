@@ -1,0 +1,38 @@
+#forms{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+label{
+    font-size: 20px;
+    padding: 10px;
+}
+
+form{
+    padding: 20px;
+    border: 1px solid gray;
+}
+
+input[type=button], input[type=submit]{
+    font-size: 20px;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    color: #0877C9;
+}
+
+input[type=button]:hover, input[type=submit]:hover{
+    background-color: #02b0bd;
+}
+
+#usersTable{
+    font-size: 20px;
+    margin: 20px;
+    padding: 10px;
+}
+
+td{
+    margin: 20px;
+    padding: 10px;
+}

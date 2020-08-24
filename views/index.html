@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<head>
+    <title>Test</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+
+<body>
+
+<div id="forms">
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Upload CSV file to server:</label>
+        <input type="file" name="users" id="file">
+        <input type="submit" value="Upload">
+    </form>
+
+    <form action="/getUsers" method="get">
+        <label for="getUsers">Get users from db:</label>
+        <input id="getUsers" type="button" value="GET" onclick="UsersTableData()">
+    </form>
+
+    <form action="/getFile" method="get" enctype="multipart/form-data">
+        <label for="getFile">Get CSV file from db:</label>
+        <input id="getFile" type="submit" value="GET">
+    </form>
+</div>
+
+
+</body>
+<table id="usersTable"><tbody id="usersTableBody"></tbody></table>
+
+<script>
+    let xhr = new XMLHttpRequest();
+    let usersTableBody = document.getElementById("usersTableBody");
+    function UsersTableData(){
+        xhr.onreadystatechange = getUsers;
+        xhr.open("GET", '/getUsers');
+        xhr.send(null);
+    }
+
+    function getUsers(){
+        if(xhr.readyState === 4 && xhr.status === 200){
+            let usersData = JSON.parse(xhr.responseText);
+            let usersHtml = "<tr><td>UserName</td> <td>FirstName</td> <td>LastName</td> <td>Age</tr>";
+            for(let i = 0; i < usersData.length; i++) {
+                usersHtml += `<tr><td>${usersData[i]["UserName"]}</td><td>${usersData[i]["FirstName"]}</td><td>${usersData[i]["LastName"]}</td><td>${usersData[i]["Age"]}</td></tr>`;
+            }
+            usersTableBody.innerHTML = usersHtml;
+        }
+    }
+
+</script>
